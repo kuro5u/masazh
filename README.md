@@ -2,6 +2,7 @@
 
 ## Installation
 For Arch users:
+
 `pacman -S libpulse songrec python-colorama python-requests python-unidecode`
 
 ## Update

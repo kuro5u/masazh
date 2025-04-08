@@ -91,8 +91,9 @@ def pretty_print(artist, song, album, year, label, lyrics=None):
     print(f"{Fore.BLUE}Album: {Fore.RESET}{album}")
     print(f"{Fore.BLUE}Year: {Fore.RESET}{year}")
     print(f"{Fore.BLUE}Label: {Fore.RESET}{label}")
+    print()
     if lyrics:
-        print(f"{lyrics}")
+        print(f"\t{Fore.BLUE}[ Lyrics ]{Fore.RESET}\n{lyrics}")
 
 if __name__ == "__main__":
 
