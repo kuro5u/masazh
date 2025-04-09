@@ -46,9 +46,10 @@ def parse_songrec_results(song_data):
     json_data = json.loads(song_data)
     artist = json_data['track']['subtitle']
     song = json_data['track']['title']
-    album = json_data['track']['sections'][0]['metadata'][0]['text']
-    year = json_data['track']['sections'][0]['metadata'][2]['text']
-    label = json_data['track']['sections'][0]['metadata'][1]['text']
+    metadata = json_data['track']['sections'][0]['metadata']
+    album = metadata[0]['text'] if metadata else '-'
+    year = metadata[2]['text'] if metadata else '-'
+    label = metadata[1]['text'] if metadata else '-'
     return artist, song, album, year, label
 
 def find_lyrics(artist, song):

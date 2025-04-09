@@ -9,7 +9,7 @@ class BackgroundTasks(threading.Thread):
         loading_message()
 
 def handle_sigint(signum, frame):
-    print("\nExiting..")
+    print("\nByee..")
     os._exit(0)
 
 def loading_message():
