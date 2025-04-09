@@ -7,12 +7,9 @@ import signal
 import json
 import sys
 import re
+import utils
 from colorama import Fore
 from unidecode import unidecode
-
-def handle_sigint(signum, frame):
-    print("\nExiting..")
-    sys.exit(0)
 
 def banner():
     print(Fore.GREEN)
@@ -39,6 +36,8 @@ def find_active_sink():
     return None
 
 def recognize_song_from_sink(sink):
+    thread = utils.BackgroundTasks()
+    thread.start()
     command = ['/usr/bin/songrec', 'recognize', '-d', f'{sink}.monitor', '-j']
     result = subprocess.run(command, capture_output=True, text=True, check=True)
     return result.stdout
@@ -86,6 +85,7 @@ def find_lyrics(artist, song):
     return lyrics
 
 def pretty_print(artist, song, album, year, label, lyrics=None):
+    utils.clear_message()
     print(f"{Fore.BLUE}Artist: {Fore.RESET}{artist}")
     print(f"{Fore.BLUE}Song: {Fore.RESET}{song}")
     print(f"{Fore.BLUE}Album: {Fore.RESET}{album}")
@@ -97,7 +97,7 @@ def pretty_print(artist, song, album, year, label, lyrics=None):
 
 if __name__ == "__main__":
 
-    signal.signal(signal.SIGINT, handle_sigint)
+    signal.signal(signal.SIGINT, utils.handle_sigint)
 
     parser = argparse.ArgumentParser(description="Mashaz - Get information for the song currently playing on your device")
     # parser.add_argument('-a', nargs='+', help='Artist name')

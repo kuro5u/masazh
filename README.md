@@ -8,5 +8,6 @@ For Arch users:
 ## Update
 `git pull`
 
-## To-Do
+## To-do
+- [ ] Use threading for finding lyrics
 - [ ] Add manual artist/song lookup
